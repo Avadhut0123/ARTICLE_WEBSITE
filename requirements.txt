@@ -1,0 +1,4 @@
+flask==2.3.2
+Flask-wtf==1.1.1
+flask_mysqldb==1.0.1
+passlib==1.7.4

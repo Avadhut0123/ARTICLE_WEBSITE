@@ -1,0 +1,30 @@
+{% extends 'layouts.html' %} {% block body %}
+<h1 class="my-3">DashBoard <small>Welcome {{ session.username}}</small></h1>
+<a href="/add_article" class="btn btn-success"> Add Article </a>
+<hr>
+<table class= "table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for articles in articles %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{articles.title}}</td>
+        <td>{{articles.author}}</td>
+        <td>{{articles.create_date}}</td>
+        <td><a href="edit_article/{{articles.id}}" class= "btn btn-outline-dark pull-right">EDIT</a></td>
+        <td>
+            <form action="{{url_for('delete_article',id = articles.id)}}" method = "POST">
+                <input type="hidden" name = "_method" value= "Delete">
+                <input type="submit" value = "Delete" class = "btn btn-danger">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock body %}
